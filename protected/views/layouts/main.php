@@ -1,7 +1,5 @@
 <?php /* @var $this Controller */ ?>
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -15,6 +13,16 @@
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
         <!-- end Boots_from -->
+        
+        
+        <script>
+        
+        function alerta()
+        {
+            alert('tal');
+        }
+        </script>
+        
     </head>
 
     <body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
@@ -37,7 +45,31 @@
                             <li class="divider-vertical"></li>
 
                             <li class="avatar_small"><a href="http://wbpreview.com/previews/WB082S4MT/account.html"></a></li>
-                            <li><a href="#myModal" role="button"  data-toggle="modal">Iniciar Sesión</a></li>
+                            <li>
+                            <?php 
+                            
+                            if(Yii::app()->user->isGuest) 
+                            {
+                                $option = array('type' => 'POST',
+//                                'data' => array('producto' => "js:$('select#productos').val()", 'subproducto' => "js:$('select#sub_productos').val()", 'uen' => "js:$('select#uen').val()", 'periodo' => 'js:cbo_periodo.value', 'fecha' => 'js:meses.value','tipoCanal' => "js:$('select#tipo_canal').val()"),
+                                    'update' => '#divInicioSession',
+                                    'success' => 'function(data) {
+                                        if(data=="valido")
+                                            window.location.href="index.php?r=site/profile";
+                                        else 
+                                            $(\'#divInicioSession\').html(data);
+                                }');
+                            
+                                echo CHtml::ajaxLink('Iniciar Sesión', CController::createUrl('Site/IniciarSession'), $option, array("href"=>"#myModal", "role"=>"button" , "data-toggle"=>"modal")); 
+                            }
+                            else {
+                                echo CHtml::ajaxLink('Cerrar Sesión', CController::createUrl('Site/Logout'),'',array('name'=>'cerrarLogin')); 
+                            }
+                            
+                            ?>    
+                                <!--<a href="#myModal" role="button"  data-toggle="modal">Iniciar Sesión</a>-->
+                              
+                            </li>
 <!--                            <li class="dropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                                     Iniciar Sesión
@@ -54,7 +86,7 @@
                                             <i class="icon-lock"></i> Change Password</a>
                                     </li>
                                     <li class="divider"></li>
-                                    <li>
+                                    <li>createUrl
                                         <a href="http://wbpreview.com/previews/WB082S4MT/login.html"><i class="icon-off"></i> Logout</a>
                                     </li>
                                 </ul>
@@ -129,7 +161,8 @@
 
         <!-- Modal -->
         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="login-content span4 offset1">
+            <div id="divInicioSession"> </div>
+<!--            <div class="login-content span4 offset1">
                 <div class="header-login well">
                     <h3>Iniciar Sesión</h3>
                 </div>
@@ -144,11 +177,9 @@
                     </label>
                     <a href="http://wbpreview.com/previews/WB082S4MT/index.html" type="submit" class="btn btn-info">Iniciar Sesión</a>
                     <a data-dismiss="modal" aria-hidden="true" class="btn btn-info">Cancelar</a>
-                    <!--<p class="sign-up-lg">No recuerdas tu cuenta' <a href="http://wbpreview.com/previews/WB082S4MT/sign-up.html">Sign Up.</a></p>-->
+                    <p class="sign-up-lg">No recuerdas tu cuenta' <a href="http://wbpreview.com/previews/WB082S4MT/sign-up.html">Sign Up.</a></p>
                 </form>	
-            </div>
-
-
+            </div>-->
         </div>
 
 </div><!-- page -->
