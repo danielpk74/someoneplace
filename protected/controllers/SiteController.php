@@ -93,9 +93,19 @@ class SiteController extends Controller { /**
         $this->render('contact', array('model' => $model));
     }
 
-   public function actionProfile()      
+   public function actionAdmin()      
    {
-        $this->render('profile');
+//       echo CWebApplication::getLayoutPath();
+//       CWebApplication::setLayoutPath(CWebApplication::getLayoutPath().DIRECTORY_SEPARATOR."column1");
+        $this->render('admin');
+   }
+   
+   
+   public function actionEvents()      
+   {
+//       echo CWebApplication::getLayoutPath();
+//       CWebApplication::setLayoutPath(CWebApplication::getLayoutPath().DIRECTORY_SEPARATOR."column1");
+        $this->render('events');
    }
 
     /**

@@ -55,7 +55,7 @@
                                     'update' => '#divInicioSession',
                                     'success' => 'function(data) {
                                         if(data=="valido")
-                                            window.location.href="index.php?r=site/profile";
+                                            window.location.href="index.php?r=site/admin";
                                         else 
                                             $(\'#divInicioSession\').html(data);
                                 }');
