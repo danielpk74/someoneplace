@@ -1,4 +1,4 @@
-<?php /* @var $this Controller */ ?>
+<?php /* @var $this SiteController */ ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -14,15 +14,6 @@
                         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
                         <!-- end Boots_from -->
 
-
-                        <script>
-
-                            function alerta()
-                            {
-                                alert('tal');
-                            }
-                        </script>
-
                         </head>
 
                         <body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
@@ -35,71 +26,123 @@
                                         </a>
                                         <div class="nav-collapse">
                                             <ul class="nav pull-right">
-                                                <li><a href="http://wbpreview.com/previews/WB082S4MT/index.html">Inicio</a></li>
-                                                <!--<li><a href="http://wbpreview.com/previews/WB082S4MT/index.html">Eventos</a></li>-->
-                                                <li>
-                                                <?php
-                                                $option = array('type' => 'POST',
+                                                <li><a href="<?php echo CController::createUrl('Site/Index') ?>">Inicio</a></li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                                        Maestros
+                                                        <b class="caret"></b>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a href="http://wbpreview.com/previews/WB082S4MT/profile.html">
+                                                                <i class="icon-user"></i>
+                                                                Zonas
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="http://wbpreview.com/previews/WB082S4MT/setting.html">
+                                                                <i class="icon-lock"></i> Categorias</a>
+                                                        </li>
+                                                    </ul>
+
+                                                    <li><a href="http://wbpreview.com/previews/WB082S4MT/index.html">Web</a></li>
+                                                    <!--<li><a href="http://wbpreview.com/previews/WB082S4MT/index.html">Eventos</a></li>-->
+                                                    <li>
+                                                        <?php
+                                                        $option = array('type' => 'POST',
 //                                'data' => array('producto' => "js:$('select#productos').val()", 'subproducto' => "js:$('select#sub_productos').val()", 'uen' => "js:$('select#uen').val()", 'periodo' => 'js:cbo_periodo.value', 'fecha' => 'js:meses.value','tipoCanal' => "js:$('select#tipo_canal').val()"),
-                                                    'update' => '#actualiza',
-                                                    'success' => 'function(data) {
+                                                            'update' => '#actualiza',
+                                                            'success' => 'function(data) {
                                                         $(\'#actualiza\').hide();
                                                         $(\'#actualiza\').html(data);
                                                         $(\'#actualiza\').fadeIn(1000);
                                                   }');
 
-                                                echo CHtml::ajaxLink('Eventos', CController::createUrl('Site/Events'), $option, array("name"=>"aevents"));
-                                                ?>
-                                                    
+                                                        echo CHtml::ajaxLink('Eventos', CController::createUrl('Admin/event'), $option, array("name" => "aevents"));
+                                                        ?>
+
                                                     </li>
 
-                                                <li><a href="http://wbpreview.com/previews/WB082S4MT/detail.html">Perfil</a></li>
-
-                                                <li class="divider-vertical"></li>
-
-                                                <li class="avatar_small"><a href="http://wbpreview.com/previews/WB082S4MT/account.html"></a></li>
-                                                <li>
-<?php
-if (Yii::app()->user->isGuest) {
-    $option = array('type' => 'POST',
+                                                    <li>
+                                                        <?php
+                                                        $option = array('type' => 'POST',
 //                                'data' => array('producto' => "js:$('select#productos').val()", 'subproducto' => "js:$('select#sub_productos').val()", 'uen' => "js:$('select#uen').val()", 'periodo' => 'js:cbo_periodo.value', 'fecha' => 'js:meses.value','tipoCanal' => "js:$('select#tipo_canal').val()"),
-        'update' => '#divInicioSession',
-        'success' => 'function(data) {
+                                                            'update' => '#actualiza',
+                                                            'success' => 'function(data) {
+                                                        $(\'#actualiza\').hide();
+                                                        $(\'#actualiza\').html(data);
+                                                        $(\'#actualiza\').fadeIn(1000);
+                                                  }');
+
+                                                        echo CHtml::ajaxLink('Place', CController::createUrl('Admin/place'), $option, array("name" => "aplace"));
+                                                        ?>
+
+                                                    </li>
+
+
+                                                    <li>
+                                                        <?php
+                                                        $option = array('type' => 'POST',
+//                                'data' => array('producto' => "js:$('select#productos').val()", 'subproducto' => "js:$('select#sub_productos').val()", 'uen' => "js:$('select#uen').val()", 'periodo' => 'js:cbo_periodo.value', 'fecha' => 'js:meses.value','tipoCanal' => "js:$('select#tipo_canal').val()"),
+                                                            'update' => '#actualiza',
+                                                            'success' => 'function(data) {
+                                                        $(\'#actualiza\').hide();
+                                                        $(\'#actualiza\').html(data);
+                                                        $(\'#actualiza\').fadeIn(1000);
+                                                  }');
+
+                                                        echo CHtml::ajaxLink('Perfil', CController::createUrl('Admin/Profile'), $option, array("name" => "aprofile"));
+                                                        ?>
+
+                                                    </li>
+
+                                                    <!--<li><a href="http://wbpreview.com/previews/WB082S4MT/detail.html"></a></li>-->
+
+                                                    <li class="divider-vertical"></li>
+
+                                                    <li class="avatar_small"><a href="http://wbpreview.com/previews/WB082S4MT/account.html"></a></li>
+                                                    <li>
+                                                        <?php
+                                                        if (Yii::app()->user->isGuest) {
+                                                            $option = array('type' => 'POST',
+//                                'data' => array('producto' => "js:$('select#productos').val()", 'subproducto' => "js:$('select#sub_productos').val()", 'uen' => "js:$('select#uen').val()", 'periodo' => 'js:cbo_periodo.value', 'fecha' => 'js:meses.value','tipoCanal' => "js:$('select#tipo_canal').val()"),
+                                                                'update' => '#divInicioSession',
+                                                                'success' => 'function(data) {
                                         if(data=="valido")
                                             window.location.href="index.php?r=site/profile";
                                         else 
                                             $(\'#divInicioSession\').html(data);
                                 }');
 
-    echo CHtml::ajaxLink('Iniciar Sesión', CController::createUrl('Site/IniciarSession'), $option, array("href" => "#myModal", "role" => "button", "data-toggle" => "modal"));
-} else {
-    echo CHtml::ajaxLink('Cerrar Sesión', CController::createUrl('Site/Logout'), '', array('name' => 'cerrarLogin'));
-}
-?>    
-                                                    <!--<a href="#myModal" role="button"  data-toggle="modal">Iniciar Sesión</a>-->
+                                                            echo CHtml::ajaxLink('Iniciar Sesión', CController::createUrl('Site/IniciarSession'), $option, array("href" => "#myModal", "role" => "button", "data-toggle" => "modal"));
+                                                        } else {
+                                                            echo CHtml::ajaxLink('Cerrar Sesión', CController::createUrl('Site/Logout'), '', array('name' => 'cerrarLogin'));
+                                                        }
+                                                        ?>    
+                                                        <!--<a href="#myModal" role="button"  data-toggle="modal">Iniciar Sesión</a>-->
 
-                                                </li>
-                                                <!--                            <li class="dropdown">
-                                                                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                                                                                    Iniciar Sesión
-                                                                                    <b class="caret"></b>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu">
-                                                                                    <li>
-                                                                                        <a href="http://wbpreview.com/previews/WB082S4MT/profile.html">
-                                                                                            <i class="icon-user"></i>
-                                                                                            Account Setting  </a>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <a href="http://wbpreview.com/previews/WB082S4MT/setting.html">
-                                                                                            <i class="icon-lock"></i> Change Password</a>
-                                                                                    </li>
-                                                                                    <li class="divider"></li>
-                                                                                    <li>createUrl
-                                                                                        <a href="http://wbpreview.com/previews/WB082S4MT/login.html"><i class="icon-off"></i> Logout</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </li>-->
+                                                    </li>
+                                                    <!--                            <li class="dropdown">
+                                                                                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                                                                        Iniciar Sesión
+                                                                                        <b class="caret"></b>
+                                                                                    </a>
+                                                                                    <ul class="dropdown-menu">
+                                                                                        <li>
+                                                                                            <a href="http://wbpreview.com/previews/WB082S4MT/profile.html">
+                                                                                                <i class="icon-user"></i>
+                                                                                                Account Setting  </a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="http://wbpreview.com/previews/WB082S4MT/setting.html">
+                                                                                                <i class="icon-lock"></i> Change Password</a>
+                                                                                        </li>
+                                                                                        <li class="divider"></li>
+                                                                                        <li>createUrl
+                                                                                            <a href="http://wbpreview.com/previews/WB082S4MT/login.html"><i class="icon-off"></i> Logout</a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </li>-->
                                             </ul>
                                         </div>
                                     </div>
@@ -112,16 +155,16 @@ if (Yii::app()->user->isGuest) {
 
 
 
-<?php if (isset($this->breadcrumbs)): ?>
-    <?php
-    $this->widget('zii.widgets.CBreadcrumbs', array(
-        'links' => $this->breadcrumbs,
-    ));
-    ?><!-- breadcrumbs -->
+                                    <?php if (isset($this->breadcrumbs)): ?>
+                                        <?php
+                                        $this->widget('zii.widgets.CBreadcrumbs', array(
+                                            'links' => $this->breadcrumbs,
+                                        ));
+                                        ?><!-- breadcrumbs -->
                                     <?php endif ?>
 
                                     <div id="actualiza">
-                                           <?php echo $content; ?>
+                                        <?php echo $content; ?>
                                     </div>
 
                                 </div><!-- end container -->
@@ -132,7 +175,7 @@ if (Yii::app()->user->isGuest) {
 
                             <div class="clear"></div>
 
-                            <div class="footer">
+                            <div class="footer" >
                                 <div class="container">
                                     <div class="row">
                                         <div class="span6 logo-vt">

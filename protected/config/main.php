@@ -8,6 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Some one Place',
+        'homeUrl'=>'/index.php?r=Index',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -16,6 +17,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'application.views.site.*',
 	),
 
 	'modules'=>array(

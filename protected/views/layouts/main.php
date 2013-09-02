@@ -13,16 +13,6 @@
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
         <!-- end Boots_from -->
-        
-        
-        <script>
-        
-        function alerta()
-        {
-            alert('tal');
-        }
-        </script>
-        
     </head>
 
     <body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
@@ -55,7 +45,7 @@
                                     'update' => '#divInicioSession',
                                     'success' => 'function(data) {
                                         if(data=="valido")
-                                            window.location.href="index.php?r=site/admin";
+                                            window.location.href="index.php?r=Admin/index";
                                         else 
                                             $(\'#divInicioSession\').html(data);
                                 }');
@@ -100,9 +90,6 @@
         <div class="main">
             <div class="container">
 
-
-
-
 <?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -114,9 +101,6 @@
             </div><!-- end container -->
         </div><!-- end main -->
 	
-	
-	
-
 	<div class="clear"></div>
 
 	<div class="footer">

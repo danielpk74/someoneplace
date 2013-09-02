@@ -1,14 +1,15 @@
 <?php
 
-class SiteController extends Controller { /**
- * Declares class-based actions.
- */
+class SiteController extends Controller {
 
+    /**
+     * Declares class-based actions.
+     */
     public function actions() {
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page
             'captcha' => array(
-                'class' => 'CCaptchaAction',
+                'class' => 'CCaptchaActeion',
                 'backColor' => 0xFFFFFF,
             ),
             // page action renders "static" pages stored under 'protected/views/site/pages'
@@ -18,7 +19,7 @@ class SiteController extends Controller { /**
             ),
         );
     }
-    
+
     /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
@@ -38,13 +39,11 @@ class SiteController extends Controller { /**
             // validate user input and redirect to the previous page if valid
             if ($loginModel->validate() && $loginModel->login()) {
                 echo "valido";
+            } else {
+                $this->renderPartial('flogin', array('loginModel' => $loginModel));
             }
-            else {
-                $this->renderPartial('flogin',array('loginModel' => $loginModel));
-            }
-        }
-        else {
-            $this->renderPartial('flogin',array('loginModel' => $loginModel));
+        } else {
+            $this->renderPartial('flogin', array('loginModel' => $loginModel));
         }
     }
 
@@ -56,6 +55,25 @@ class SiteController extends Controller { /**
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
         $this->render('index');
+    }
+    
+    /**
+     * Search a place  
+     */
+    public function actionSearch()
+    {
+        $place = new PlaceRecord();
+        
+        if(Yii::app()->request->getParam('advance')==false)
+            $param = Yii::app()->request->getParam('param');
+        
+        $places = PlaceRecord::searchPlaceForComent($param);
+        
+        if(Count($places) != 0) 
+            $this->renderPartial('result',array('places'=>$places));
+        else {
+            echo "empty";
+        }
     }
 
     /**
@@ -93,20 +111,22 @@ class SiteController extends Controller { /**
         $this->render('contact', array('model' => $model));
     }
 
-   public function actionAdmin()      
-   {
-//       echo CWebApplication::getLayoutPath();
-//       CWebApplication::setLayoutPath(CWebApplication::getLayoutPath().DIRECTORY_SEPARATOR."column1");
-        $this->render('admin');
-   }
-   
-   
-   public function actionEvents()      
-   {
-//       echo CWebApplication::getLayoutPath();
-//       CWebApplication::setLayoutPath(CWebApplication::getLayoutPath().DIRECTORY_SEPARATOR."column1");
-        $this->render('events');
-   }
+//    public function actionAdmin() {
+//        $placeId = UserRecord::get_PlaceID(Yii::app()->user->id);
+//        if($placeId == NULL)
+//        {
+//            
+//        }
+//        else {
+//            
+//        }
+//        
+//        $this->render('admin',array('placeId'=>$placeId));
+//    }
+
+    
+
+    /// END PROFILE ACTION 
 
     /**
      * Logs out the current user and redirect to homepage.

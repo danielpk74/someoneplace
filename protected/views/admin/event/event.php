@@ -1,10 +1,10 @@
 <?php
 /* @var $this SiteController */
 $this->pageTitle = Yii::app()->name . " - Eventos";
-$this->layout = 'blank';
+$this->layout = 'layout_admin';
 ?>
 <div class="row">
-    <div class="span3 sidebar_content">
+<!--    <div class="span3 sidebar_content">
         <div class="row">
             <div class="span3 user_info">
                 <ul>
@@ -14,13 +14,13 @@ $this->layout = 'blank';
                 </ul>
             </div>
         </div>
-    </div><!-- end sidebar_content -->
-    <div class="span9">
-        <ul class="breadcrumb">
+    </div> end sidebar_content -->
+    <div class="span12">
+<!--        <ul class="breadcrumb">
             <li class="active">
                 <span>Profile</span>
             </li>
-        </ul>
+        </ul>-->
         <div>
             <div class="title">
                 <h3>Eventos</h3>
@@ -30,9 +30,14 @@ $this->layout = 'blank';
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
+                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>H. Inicio</th>
+                        <th>H. Fin</th>
+                        <th>Musica</th>
+                        <th>Dirección</th>
+                        <th>Cupo Limitado</th>
+                        <th>Descripción</th>
                     </tr>
                 </thead>
 
@@ -41,38 +46,20 @@ $this->layout = 'blank';
                         <td>1</td>
                         <td><a href="http://wbpreview.com/previews/WB082S4MT/element.html#">Mark</a></td>
                         <td>Otto</td>
-                        <td>mark@gmail.com</td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td><a href="http://wbpreview.com/previews/WB082S4MT/element.html#">Jacob</a></td>
-                        <td>Thornton</td>
-                        <td>jacob@gmail.com</td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td><a href="http://wbpreview.com/previews/WB082S4MT/element.html#">Larry</a></td>
-                        <td>the Bird</td>
-                        <td>larry@gmail.com</td>
-                    </tr>
-
-                    <tr>
-                        <td>4</td>
-                        <td><a href="http://wbpreview.com/previews/WB082S4MT/element.html#">Robin</a></td>
-                        <td>Thornton</td>
-                        <td>robin@gmail.com</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><a href="http://wbpreview.com/previews/WB082S4MT/element.html#">Batman</a></td>
                         <td>Otto</td>
-                        <td>batman@gmail.com</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>Otto</td>
+                        <td>mark@gmail.com</td>
                     </tr>
 
                 </tbody>
             </table>
+            
+            
+            
+            
             <div class="footer-table">
                 <div class="navigation pagination pull-right">
                     <ul>
@@ -84,9 +71,10 @@ $this->layout = 'blank';
                     </ul>
                 </div>
             </div> 
+            
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
         <!-- end content profile -->
     </div>
+
 </div>
-</div><!-- end container -->
-</div><!-- end main -->

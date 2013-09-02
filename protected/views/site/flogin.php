@@ -58,11 +58,14 @@
             
             <a data-dismiss="modal" aria-hidden="true" class="btn btn-info">Cancelar</a>
             
+            
             <!--<a href="http://wbpreview.com/previews/WB082S4MT/index.html" type="submit" class="btn btn-info">Iniciar Sesión</a>-->
             <!--<p class="sign-up-lg">No recuerdas tu cuenta' <a href="http://wbpreview.com/previews/WB082S4MT/sign-up.html">Sign Up.</a></p>-->
         </div>	
+    <a data-dismiss="modal" aria-hidden="true" style="float: right">Registrarme</a>
     </div>
 <?php $this->endWidget(); ?>
+
 </div><!-- form -->
 
 
