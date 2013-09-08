@@ -73,6 +73,13 @@
         data.append('contact_phone', $("#contact_phone").val());
         data.append('place_coments', $("#place_coments").val());
         data.append('key_words', $("#key_words").val());
+        
+        categories =  new Array();
+        $('.categories').each(function(index, elemento) {
+            categories[index] = $(elemento).attr("id");
+        });
+        
+          data.append('categories', categories);
 
 
         $.ajax({'type': 'POST', contentType: false, 'url': '<?php echo CController::createUrl('Admin/Place') ?>',
@@ -92,6 +99,27 @@
                     $('#divAlert').html("No pudimos registrar tu lugar, por favor intentalo o comunicate con nosotros y lo haremos por ti... =D");
                 }
             }, 'cache': false});
+    }
+
+    function checks()
+    {
+//        $(".tab5 div div[id=checks]").each(function(index) {
+//            $(this).children("checkbox").each(function(index2) {
+//                 alert($(this).value());
+//            })
+//        });
+
+        //Gestionar con each
+//        $('.categories').each(function(index, elemento) {
+//                    alert("Elemento: " + $(elemento).attr("id") + " en el indice " + index);
+//        });
+        
+        categories =  new Array();
+        $('.categories').each(function(index, elemento) {
+            categories[index]=$(elemento).attr("id");
+        });
+        
+        alert(categories);
     }
 </script>
 
@@ -359,13 +387,13 @@
                             <h5>Selecciona las categorias en las que crees que tu lugar se encuentra</h5>
                             <div id="errorSumary" style="float: right"></div>
                         </div>
-                        <div class="form-horizontal">
+                        <div class="form-inline">
                             <fieldset>
                                 <?php foreach ($categories as $category) { ?>
                                     <div class="control-group">
                                         <div class="controls">
-                                            <?php echo $category->category_name; ?>
-                                        </div>
+                                            <label for="chk<?php echo $category->category_name; ?>"><input type="checkbox" class="categories" value="<?php echo $category->category_name; ?>" id="<?php echo $category->category_id; ?>"/> <?php echo $category->category_name; ?></label>
+                                        </div>                                        
                                     </div>
                                 <?php } ?>
                             </fieldset>
@@ -374,6 +402,7 @@
                 </div><!-- end box-form -->
             </div><!-- end Table5 -->
             <a id="savePlace" class="btn btn-info" onclick="savePlace(this)" style="float: left">Guardar</a>
+            <a id="savePlace" class="btn btn-info" onclick="checks()" style="float: left">Checks</a>
         </div><!-- end tab-content -->
 
     </div><!-- end table -->

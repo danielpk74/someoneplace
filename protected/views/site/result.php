@@ -23,13 +23,14 @@ foreach ($places as $place) {
                                                     echo "...";
                                                  ?>
                                             </p>
-                                            <p>Zona:</p>
-                                            <p>Apertura:</p>
-                                            <p>Cierre:</p>
-                                            <p>Telefono:</p>
+                                            <p><span id="strong">Zona:</span> <?php echo $place['zone_name']?></p>
+                                            <p><span>Abre:</span> </p>
+                                            <p><span>Cierra:</span> </p>
+                                            <p><span>Reservas:</span> <?php echo $place['place_phone'] . " - " . $place['place_movil'] ?></p>
                                             <br><br>
                                         </div>
                                     </div>
+                                    
                                     <div class="box border-radius-bottom">
                                         <p>
                                             <span class="title_torrent pull-left">Movie</span>

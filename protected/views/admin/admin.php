@@ -34,11 +34,10 @@ $this->layout = 'layout_admin';
 
 </script>
 
-
-<div id="mainAdmin" class="row">
+<div id="mainAdmin">
     <div id="divAlert" class="alert alert-info fade in" style="display: none"></div>
-    
-    <div id="admin" class="row">
+
+    <div id="admin">
 
 
         <?php if ($placeId == null) { ?>

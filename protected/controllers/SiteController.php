@@ -54,23 +54,74 @@ class SiteController extends Controller {
     public function actionIndex() {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
-        $this->render('index');
+        $zones = new ZoneRecord();
+        $zones = ZoneRecord::model()->findAll();
+
+        $this->render('index', array('zones' => $zones));
+    }
+
+    /**
+     * Search a place for diferents parameters
+     * <b>Single parameter</b>Search a place for description or keys words proposes for the place owner
+     * <b>Advance parameter</b>  
+     */
+    public function actionSearchTypePlace() {
+        $place = new PlaceRecord();
+        
+        $param = Yii::app()->request->getParam('typeID');
+
+        //--------- Start to search places id's for severals parameters
+        
+        $places = CategoriesPlacesRecord::model()->findAllByAttributes(array('category_id' => $param ));
+        if (Count($places) != 0) {
+            foreach ($places as $place) {
+                $placesID[] = $place['place_id'];
+            }
+
+            // convert the place id array to the unique array and create new array with the place data
+            $placesID = array_unique($placesID);
+            $places = array();
+            foreach ($placesID as $id) {
+                $places[] = PlaceRecord::searchPlacesById($id);
+            }
+        }
+
+        if (Count($places) != 0)
+            $this->renderPartial('result', array('places' => $places));
+        else {
+            echo "empty";
+        }
     }
     
     /**
-     * Search a place  
+     * Search a place for diferents parameters
+     * <b>Single parameter</b>Search a place for description or keys words proposes for the place owner
+     * <b>Advance parameter</b>  
      */
-    public function actionSearch()
-    {
+    public function actionSearch() {
         $place = new PlaceRecord();
-        
-        if(Yii::app()->request->getParam('advance')==false)
+
+        if (Yii::app()->request->getParam('advance') == false)
             $param = Yii::app()->request->getParam('param');
-        
+
+        //--------- Start to search places id's for severals parameters
         $places = PlaceRecord::searchPlaceForComent($param);
-        
-        if(Count($places) != 0) 
-            $this->renderPartial('result',array('places'=>$places));
+        $places = array_merge(PlaceRecord::searchPlaceForKeyWord($param), $places);
+        if (Count($places) != 0) {
+            foreach ($places as $place) {
+                $placesID[] = $place['place_id'];
+            }
+
+            // convert the place id array to the unique array and create new array with the place data
+            $placesID = array_unique($placesID);
+            $places = array();
+            foreach ($placesID as $id) {
+                $places[] = PlaceRecord::searchPlacesByPlaceId($id);
+            }
+        }
+
+        if (Count($places) != 0)
+            $this->renderPartial('result', array('places' => $places));
         else {
             echo "empty";
         }
@@ -123,9 +174,6 @@ class SiteController extends Controller {
 //        
 //        $this->render('admin',array('placeId'=>$placeId));
 //    }
-
-    
-
     /// END PROFILE ACTION 
 
     /**

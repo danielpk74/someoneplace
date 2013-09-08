@@ -46,8 +46,21 @@ class AdminController extends Controller {
             $place->contact_phone = Yii::app()->request->getParam('contact_phone');
             $place->place_coments = Yii::app()->request->getParam('place_coments');
             if ($place->save()) {
+
+                // Save the selected categories for the new place
+                $categoriesPlace = new CategoriesPlacesRecord('Insert');
+                $selectedCategories = explode(",", Yii::app()->request->getParam('categories'));
+                foreach ($selectedCategories as $value) {
+                    $categoriesPlace->category_id = $value;
+                    $categoriesPlace->place_id = $place->id;
+                    $categoriesPlace->save();
+                }
+
+                // Update a place to user
                 UserRecord::updatePlaceID(Yii::app()->user->id, $place->id);
                 $placeId = UserRecord::get_PlaceID(Yii::app()->user->id);
+                
+                // Render View
                 $this->renderPartial('admin', array('placeId' => $placeId));
             }
             else
