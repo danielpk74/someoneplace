@@ -21,6 +21,14 @@ class AdminController extends Controller {
 
         $zones = new ZoneRecord();
         $zones = ZoneRecord::model()->findAll();
+        
+        $placeId = UserRecord::get_PlaceID(Yii::app()->user->id);
+        if($placeId != '')
+        {
+            $place = new PlaceRecord();
+            $place = PlaceRecord::model()->findByPk($placeId);
+        }
+        
 
         // si la opcion es guardar
         if (isset($_POST['objeto'])) {
