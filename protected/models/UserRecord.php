@@ -126,5 +126,5 @@ class UserRecord extends CActiveRecord {
         if($user->save())
             return true;        
     }
-
+    
 }

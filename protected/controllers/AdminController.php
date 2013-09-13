@@ -114,7 +114,7 @@ class AdminController extends Controller {
         $event = new EventsTypesRecord();
         $event = EventsTypesRecord::model()->findByPk(Yii::app()->getRequest()->getParam('event_type_id'));
 
-        $this->render('event/formCreateEvent', array('type' => $event, 'opcion' => 'Crear'));
+        $this->render('event/event', array('type' => $event, 'opcion' => 'Crear'));
     }
 
     /// Show event

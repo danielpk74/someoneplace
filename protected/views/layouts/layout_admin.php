@@ -58,7 +58,7 @@
                                                         $(\'#actualiza\').fadeIn(1000);
                                                   }');
 
-                                                        echo CHtml::ajaxLink('Eventos', CController::createUrl('Admin/event'), $option, array("name" => "aevents"));
+                                                        echo CHtml::ajaxLink('Eventos', CController::createUrl('event/eventList'), $option, array("name" => "aevents"));
                                                         ?>
 
                                                     </li>

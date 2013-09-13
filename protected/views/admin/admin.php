@@ -1,6 +1,6 @@
 <?php
-/* @var $this AdminController */
-$this->pageTitle = Yii::app()->name . " - Admin";
+/* @var $this EventController */
+$this->pageTitle = Yii::app()->name . " - Event";
 $this->layout = 'layout_admin';
 ?>
 
@@ -11,26 +11,26 @@ $this->layout = 'layout_admin';
         $('#opcionesAdmin').hide(500);
     }
 
-    function showEventForm(event_type_id)
+    function showEventForm(event_type_id,div)
     {
-        $.ajax({'type': 'POST', 'url': '<?php echo CController::createUrl('Admin/ShowFormEvent') ?>',
+        $.ajax({'type': 'POST', 'url': '<?php echo CController::createUrl('Event/ShowFormEvent') ?>',
             'data': {
                 'event_type_id': event_type_id
             }, 'success': function(data) {
-                $('#opcionesAdmin').html(data);
+                $('#'+div).html(data);
             }, 'cache': false});
     }
 
 
-    function create_Event(event_type_id)
-    {
-        $.ajax({'type': 'POST', 'url': '<?php echo CController::createUrl('Admin/ShowFormEvent') ?>',
-            'data': {
-                'event_type_id': event_type_id
-            }, 'success': function(data) {
-                $('#opcionesAdmin').html(data);
-            }, 'cache': false});
-    }
+//    function create_Event(event_type_id)
+//    {
+//        $.ajax({'type': 'POST', 'url': '<?php echo CController::createUrl('Admin/ShowFormEvent') ?>',
+//            'data': {
+//                'event_type_id': event_type_id
+//            }, 'success': function(data) {
+//                $('#opcionesAdmin').html(data);
+//            }, 'cache': false});
+//    }
 
 </script>
 
@@ -79,7 +79,8 @@ $this->layout = 'layout_admin';
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <button id="btn_create_event" <?php if ($placeId == NULL) { ?>onclick="crearLugar()" <?php } ?> <?php if ($placeId != NULL) { ?>onclick="showEventForm(1)" <?php } ?> class="btn btn-blue-s6">Crear Evento</button>
+                        
+                        <a id="btn_create_event"  href="#modalEventDetailsAdmin" role="button" data-toggle="modal" <?php if ($placeId == NULL) { ?>onclick="crearLugar()" <?php } ?> <?php if ($placeId != NULL) { ?>onclick="showEventForm(1,'modalEventDetailsAdmin')" <?php } ?> class="btn btn-blue-s6">Crear Evento</a>
                     </div>
                 </div>
             </div>
@@ -91,7 +92,7 @@ $this->layout = 'layout_admin';
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <button id="create_promotion" <?php if ($placeId == NULL) { ?>onclick="crearLugar()" <?php } ?> <?php if ($placeId != NULL) { ?>onclick="showEventForm(2)" <?php } ?> class="btn btn-blue-s6">Crear Promoción</button>
+                        <a id="create_promotion"  href="#modalEventDetailsAdmin" role="button" data-toggle="modal" <?php if ($placeId == NULL) { ?>onclick="crearLugar()" <?php } ?> <?php if ($placeId != NULL) { ?>onclick="showEventForm(2,'modalEventDetailsAdmin')" <?php } ?> class="btn btn-blue-s6">Crear Promoción</a>
                     </div>
                 </div>
             </div>
@@ -103,7 +104,7 @@ $this->layout = 'layout_admin';
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <button id="create_invitation" <?php if ($placeId == NULL) { ?>onclick="crearLugar()" <?php } ?> <?php if ($placeId != NULL) { ?>onclick="showEventForm(3)" <?php } ?> class="btn btn-blue-s6">Crear Invitación</button>
+                        <a id="create_invitation"  href="#modalEventDetailsAdmin" role="button" data-toggle="modal" <?php if ($placeId == NULL) { ?>onclick="crearLugar()" <?php } ?> <?php if ($placeId != NULL) { ?>onclick="showEventForm(3,'modalEventDetailsAdmin')" <?php } ?> class="btn btn-blue-s6">Crear Invitación</a>
                     </div>
                 </div>
             </div>
@@ -111,3 +112,7 @@ $this->layout = 'layout_admin';
     </div>
 
 </div>
+
+<!-- Modal -->
+<div id="modalEventDetailsAdmin" class="modal hide fade span19" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ></div>
+
